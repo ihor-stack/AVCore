@@ -327,8 +327,11 @@ class CustomizeUser extends PluginAbstract {
         }
     }
 
-    public function getWatchActionButton($videos_id) {
+    public function getWatchActionButton($videos_id) {        
         global $global, $video;
+        if(!empty($videos_id) && empty($video)){
+            $video = Video::getVideo($videos_id);
+        }
         $obj = $this->getDataObject();
         include $global['systemRootPath'] . 'plugin/CustomizeUser/actionButton.php';
     }

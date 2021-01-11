@@ -415,7 +415,7 @@ abstract class ObjectYPT implements ObjectInterface
         }
 
         make_path($tmpDir);
-        if (!file_exists($tmpDir . "index.html")) {// to avoid search into the directory
+        if (!file_exists($tmpDir . "index.html") && is_writable($tmpDir)) {// to avoid search into the directory
             file_put_contents($tmpDir . "index.html", time());
         }
         return $tmpDir;
@@ -551,8 +551,13 @@ abstract class ObjectYPT implements ObjectInterface
         if (empty($tableName)) {
             $tableName = static::getTableName();
         }
+        if (empty($tableName)) {
+            return false;
+        }
         if (!isset($tableExists[$tableName])) {
-            $res = sqlDAL::readSql("SHOW TABLES LIKE '" . $tableName . "'");
+            $sql = "SHOW TABLES LIKE '" . $tableName . "'";
+            //_error_log("isTableInstalled: ({$sql})");
+            $res = sqlDAL::readSql($sql);
             $result = sqlDal::num_rows($res);
             sqlDAL::close($res);
             $tableExists[$tableName] = !empty($result);
