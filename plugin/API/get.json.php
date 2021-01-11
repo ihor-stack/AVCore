@@ -8,7 +8,7 @@ if (!file_exists($configFile)) {
 require_once $configFile;
 require_once $global['systemRootPath'].'plugin/API/API.php';
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
+//header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: Content-Type");
 
 $plugin = AVideoPlugin::loadPluginIfEnabled("API");

@@ -104,6 +104,29 @@ $metaDescription = __("Channels");
                     foreach ($channels as $value) {
                         $get = array('channelName' => $value['channelName']);
                         ?>
+			            <!-- For Live Videos -->
+						<div class="panel panel-default" id="liveVideos" style="display: none;">
+                            <div class="panel-heading">
+							  <i class="fas fa-play-circle"></i> <?php echo __("Live Streams"); ?>
+                            </div>
+                            <div class="panel-body gallery ">
+							  <div class="extraVideos"></div>
+						   </div>
+						</div>
+
+                
+            <script>
+                function afterExtraVideos($liveLi) {
+                    $liveLi.removeClass('col-lg-12 col-sm-12 col-xs-12 bottom-border');
+                    $liveLi.find('.thumbsImage').removeClass('col-lg-5 col-sm-5 col-xs-5');
+                    $liveLi.find('.videosDetails').removeClass('col-lg-7 col-sm-7 col-xs-7');
+                    $liveLi.addClass('col-lg-2 col-md-4 col-sm-4 col-xs-6 fixPadding');
+                    $('#liveVideos').slideDown();
+                    return $liveLi;
+                }
+            </script>
+
+
                         <div class="panel panel-default">
                             <div class="panel-heading" style="position: relative;">
                                 <img src="<?php echo User::getPhoto($value['id']); ?>"

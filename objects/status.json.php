@@ -1,5 +1,5 @@
 <?php
-header('Access-Control-Allow-Origin: *');
+//header('Access-Control-Allow-Origin: *');
 global $global, $config;
 if(!isset($global['systemRootPath'])){
     require_once '../videos/configuration.php';

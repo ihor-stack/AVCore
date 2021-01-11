@@ -1,5 +1,5 @@
 <?php
-header('Access-Control-Allow-Origin: *');
+//header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: Content-Type");
 global $global, $config;
 if (!isset($global['systemRootPath'])) {

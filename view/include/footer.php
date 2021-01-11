@@ -22,32 +22,6 @@ if (empty($advancedCustom)) {
     $advancedCustom = AVideoPlugin::getObjectData("CustomizeAdvanced");
 }
 ?>
-<div class="clearfix"></div>
-<footer style="<?php echo $advancedCustom->footerStyle; ?> display: none;" id="mainFooter">
-    <?php
-    $custom = "";
-    $extraPluginFile = $global['systemRootPath'] . 'plugin/Customize/Objects/ExtraConfig.php';
-    if (file_exists($extraPluginFile) && AVideoPlugin::isEnabled("c4fe1b83-8f5a-4d1b-b912-172c608bf9e3")) {
-        require_once $extraPluginFile;
-        $ec = new ExtraConfig();
-        $custom = $ec->getFooter();
-    }
-    if (empty($custom)) {
-        ?>
-        <ul class="list-inline">
-            <li>
-                Powered by <a href="http://www.avideo.com" class="external btn btn-outline btn-primary btn-xs" target="_blank" rel="noopener noreferrer">AVideo®</a> - <a href="http://platform.avideo.com" class="external btn btn-outline btn-primary btn-xs" target="_blank" rel="noopener noreferrer">A Video Platform v<?php echo $config->getVersion(); ?></a>
-            </li>
-            <li>
-                <a href="https://www.facebook.com/avideo/" class="external btn btn-outline btn-primary btn-xs" target="_blank" rel="noopener noreferrer"><span class="sr-only">Facebook</span><i class="fab fa-facebook-square"></i></a>
-            </li>
-        </ul>
-        <?php
-    } else {
-        echo $custom;
-    }
-    ?>
-</footer>
 <script>
     $(function () {
 <?php

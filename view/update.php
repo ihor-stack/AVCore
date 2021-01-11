@@ -22,7 +22,7 @@ if (!empty($_POST['updateFile'])) {
 <!DOCTYPE html>
 <html lang="<?php echo $config->getLanguage(); ?>">
     <head>
-        <title><?php echo __("Update AVideo System") . $config->getPageTitleSeparator() . $config->getWebSiteTitle(); ?></title>
+        <title><?php echo __("Update System") . $config->getPageTitleSeparator() . $config->getWebSiteTitle(); ?></title>
         <?php
         include $global['systemRootPath'] . 'view/include/head.php';
         ?>
@@ -31,7 +31,7 @@ if (!empty($_POST['updateFile'])) {
                 height: unset;
             }
             body {
-                background-color: #193c6d;
+                background-color: #636636;
                 filter: progid: DXImageTransform.Microsoft.gradient(gradientType=1, startColorstr='#003073', endColorstr='#029797');
                 background-image: url(//img.alicdn.com/tps/TB1d.u8MXXXXXXuXFXXXXXXXXXX-1900-790.jpg);
                 background-size: 100%;
@@ -68,10 +68,10 @@ if (!empty($_POST['updateFile'])) {
                     <img style="max-height: 20vh;
                          display: block;
                          margin-left: auto;
-                         margin-right: auto;" src="https://youphp.tube/marketplace/img/avideo_logo.png" class="img img-responsive"/>
+                         margin-right: auto;" src="https://privy.live/videos/userPhoto/logo.png" class="img img-responsive"/>
                 </div>
                 <div class="alert alert-success">
-                    <i class="fas fa-cog fa-spin"></i> <?php printf(__("You are running AVideo version %s!"), $config->getVersion()); ?>
+                    <i class="fas fa-cog fa-spin"></i> <?php printf(__("You are running version %s!"), $config->getVersion()); ?>
                 </div>
                 <?php
                 if (empty($_POST['updateFile'])) {
@@ -81,7 +81,7 @@ if (!empty($_POST['updateFile'])) {
                         <div class="alert alert-warning">
                             <form method="post" class="form-compact well form-horizontal" >
                                 <fieldset>
-                                    <legend><?php echo __("Update AVideo System"); ?></legend>
+                                    <legend><?php echo __("Update System"); ?></legend>
                                     <label for="updateFile" class="sr-only"><?php echo __("Select the update"); ?></label>
                                     <select class="selectpicker" data-width="fit" name="updateFile" id="updateFile" required autofocus>
                                         <?php

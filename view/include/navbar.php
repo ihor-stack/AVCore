@@ -274,7 +274,7 @@ if (!User::isLogged() && !empty($advancedCustomUser->userMustBeLoggedIn) && !emp
             <li>
                 <ul class="left-side">
                     <li style="max-width: 40px;">
-                        <button class="btn btn-default navbar-btn pull-left" id="buttonMenu"  data-toggle="tooltip" title="<?php echo __("Main Menu"); ?>" data-placement="right" ><span class="fa fa-bars"></span></button>
+                        <button class="btn btn-default navbar-btn pull-left" id="buttonMenu" style="outline:none" title="<?php echo __("Main Menu"); ?>" data-placement="right" ><span class="fa fa-bars"></span></button>
                         <script>
                             function YPTSidebarOpen() {
                                 $('body').addClass('youtube')
@@ -537,7 +537,7 @@ if (!User::isLogged() && !empty($advancedCustomUser->userMustBeLoggedIn) && !emp
                                 if (!$advancedCustomUser->disableSignOutButton) {
                                     ?>
                                     <li>
-                                        <a class="btn navbar-btn btn-default"  href="<?php echo $global['webSiteRootURL']; ?>logoff">
+                                        <a href="<?php echo $global['webSiteRootURL']; ?>logoff">
                                             <?php
                                             if (!empty($_COOKIE['user']) && !empty($_COOKIE['pass'])) {
                                                 ?>
@@ -740,14 +740,10 @@ if (!User::isLogged() && !empty($advancedCustomUser->userMustBeLoggedIn) && !emp
                     if (empty($advancedCustom->doNotShowLeftHomeButton)) {
                         ?>
                         <li>
-
-                            <div>
-                                <a href="<?php echo $global['webSiteRootURL']; ?>" class="btn btn-primary btn-block  " style="border-radius: 4px 4px 0 0;">
+                                <a href="<?php echo $global['webSiteRootURL']; ?>" style="border-radius: 4px 4px 0 0;">
                                     <span class="fa fa-home"></span>
                                     <?php echo __("Home"); ?>
                                 </a>
-
-                            </div>
                         </li>
                         <?php
                     }
@@ -778,13 +774,10 @@ if (!User::isLogged() && !empty($advancedCustomUser->userMustBeLoggedIn) && !emp
                         ?>
                         <li>
 
-                            <div>
-                                <a href="<?php echo $global['webSiteRootURL']; ?>trending" class="btn btn-primary btn-block " style="border-radius:  0 0 4px 4px;">
+                                <a href="<?php echo $global['webSiteRootURL']; ?>trending" style="border-radius:  0 0 4px 4px;">
                                     <i class="fas fa-fire"></i>
                                     <?php echo __("Trending"); ?>
                                 </a>
-
-                            </div>
                         </li>
                         <?php
                     }
@@ -800,8 +793,7 @@ if (!User::isLogged() && !empty($advancedCustomUser->userMustBeLoggedIn) && !emp
                                 <?php
                                 if (!$advancedCustomUser->disableSignOutButton) {
                                     ?>
-                                    <div>
-                                        <a href="<?php echo $global['webSiteRootURL']; ?>logoff" class="btn btn-default btn-block" >
+                                        <a href="<?php echo $global['webSiteRootURL']; ?>logoff">
                                             <?php
                                             if (!empty($_COOKIE['user']) && !empty($_COOKIE['pass'])) {
                                                 ?>
@@ -815,7 +807,6 @@ if (!User::isLogged() && !empty($advancedCustomUser->userMustBeLoggedIn) && !emp
                                             ?>
                                             <i class="fas fa-sign-out-alt"></i> <?php echo __("Sign out"); ?>
                                         </a>
-                                    </div>
                                     <?php
                                 }
                                 ?>
@@ -832,40 +823,31 @@ if (!User::isLogged() && !empty($advancedCustomUser->userMustBeLoggedIn) && !emp
                                 </div>
                             </li>
                             <li>
-
-                                <div>
-                                    <a href="<?php echo $global['webSiteRootURL']; ?>user" class="btn btn-primary btn-block" style="border-radius: 4px 4px 0 0;">
+                                    <a href="<?php echo $global['webSiteRootURL']; ?>user"  style="border-radius: 4px 4px 0 0;">
                                         <span class="fa fa-user-circle"></span>
                                         <?php echo __("My Account"); ?>
                                     </a>
-
-                                </div>
                             </li>
 
                             <?php
                             if (User::canUpload()) {
                                 ?>
                                 <li>
-                                    <div>
-                                        <a href="<?php echo $global['webSiteRootURL']; ?>mvideos" class="btn btn-success btn-block" style="border-radius: 0;">
+                                        <a href="<?php echo $global['webSiteRootURL']; ?>mvideos" style="border-radius: 0;">
                                             <span class="glyphicon glyphicon-film"></span>
                                             <span class="glyphicon glyphicon-headphones"></span>
                                             <?php echo __("My videos"); ?>
                                         </a>
-                                    </div>
                                 </li>
                                 <?php
                             }
                             ?>
                             <li>
 
-                                <div>
-                                    <a href="<?php echo User::getChannelLink(); ?>" class="btn btn-danger btn-block" style="border-radius: 0;">
+                                    <a href="<?php echo User::getChannelLink(); ?>" style="border-radius: 0;">
                                         <span class="fas fa-play-circle"></span>
                                         <?php echo __($advancedCustomUser->MyChannelLabel); ?>
                                     </a>
-
-                                </div>
                             </li>    
                             <?php
                             print AVideoPlugin::navBarButtons();
@@ -873,46 +855,38 @@ if (!User::isLogged() && !empty($advancedCustomUser->userMustBeLoggedIn) && !emp
                             if ((($config->getAuthCanViewChart() == 0) && (User::canUpload())) || (($config->getAuthCanViewChart() == 1) && (User::canViewChart()))) {
                                 ?>
                                 <li>
-                                    <div>
-                                        <a href="<?php echo $global['webSiteRootURL']; ?>charts" class="btn btn-default btn-block" style="border-radius: 0;">
+                                        <a href="<?php echo $global['webSiteRootURL']; ?>charts"  style="border-radius: 0;">
                                             <span class="fas fa-tachometer-alt"></span>
                                             <?php echo __("Dashboard"); ?>
                                         </a>
-                                    </div>
                                 </li>
                                 <?php
                             } if (User::canUpload()) {
                                 ?>
                                 <li>
-                                    <div>
-                                        <a href="<?php echo $global['webSiteRootURL']; ?>subscribes" class="btn btn-default btn-block" style="border-radius: 0">
+                                        <a href="<?php echo $global['webSiteRootURL']; ?>subscribes"  style="border-radius: 0">
                                             <span class="fa fa-check"></span>
                                             <?php echo __("My Subscribers"); ?>
                                         </a>
-                                    </div>
                                 </li>
                                 <?php
                                 if (Category::canCreateCategory()) {
                                     ?>
 
                                     <li>
-                                        <div>
-                                            <a href="<?php echo $global['webSiteRootURL']; ?>categories" class="btn btn-default btn-block" style="border-radius: 0;">
+                                            <a href="<?php echo $global['webSiteRootURL']; ?>categories" style="border-radius: 0;">
                                                 <span class="glyphicon glyphicon-list"></span>
                                                 <?php echo __($advancedCustom->CategoryLabel); ?>
                                             </a>
-                                        </div>
                                     </li>
                                     <?php
                                 }
                                 ?>
                                 <li>
-                                    <div>
-                                        <a href="<?php echo $global['webSiteRootURL']; ?>comments" class="btn btn-default btn-block" style="border-radius: 0 0 4px 4px;">
+                                        <a href="<?php echo $global['webSiteRootURL']; ?>comments"  style="border-radius: 0 0 4px 4px;">
                                             <span class="fa fa-comment"></span>
                                             <?php echo __("Comments"); ?>
                                         </a>
-                                    </div>
                                 </li>
                                 <?php
                             }
@@ -924,12 +898,10 @@ if (!User::isLogged() && !empty($advancedCustomUser->userMustBeLoggedIn) && !emp
                                 <hr>
                             </li>
                             <li>
-                                <div>
-                                    <a href="<?php echo $global['webSiteRootURL']; ?>user" class="btn btn-success btn-block">
+                                    <a href="<?php echo $global['webSiteRootURL']; ?>user">
                                         <i class="fas fa-sign-in-alt"></i>
                                         <?php echo __("Sign In"); ?>
                                     </a>
-                                </div>
                             </li>
                             <?php
                         }

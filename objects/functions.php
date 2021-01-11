@@ -2658,7 +2658,7 @@ function allowOrigin() {
         $server = parse_url($global['webSiteRootURL']);
         header('Access-Control-Allow-Origin: ' . $server["scheme"] . '://imasdk.googleapis.com');
     } else {
-        header("Access-Control-Allow-Origin: " . $_SERVER['HTTP_ORIGIN']);
+        //header("Access-Control-Allow-Origin: " . $_SERVER['HTTP_ORIGIN']);
     }
     header("Access-Control-Allow-Credentials: true");
     header("Access-Control-Allow-Methods: GET,HEAD,OPTIONS,POST,PUT");
@@ -3532,7 +3532,7 @@ function getDirSize($dir) {
     if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
         return foldersize($dir);
     } else {
-        $command = "du -sb {$dir}";
+        $command = "du -s -k {$dir}";
         exec($command . " < /dev/null 2>&1", $output, $return_val);
         if ($return_val !== 0) {
             _error_log("getDirSize: ERROR ON Command {$command}");
@@ -3543,7 +3543,7 @@ function getDirSize($dir) {
             }
             if (!empty($matches[1])) {
                 _error_log("getDirSize: found {$matches[1]} from - {$output[0]}");
-                return intval($matches[1]);
+                return intval($matches[1]) * 1024;
             }
 
             _error_log("getDirSize: ERROR on pregmatch {$output[0]}");

@@ -1,5 +1,6 @@
 <?php
-header('Access-Control-Allow-Origin: *');
+
+//header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 $obj = new stdClass();
 $obj->error = true;

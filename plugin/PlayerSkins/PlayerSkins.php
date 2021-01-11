@@ -330,7 +330,11 @@ class PlayerSkins extends PluginAbstract {
 
         if (!empty($nextURL)) {
             $js .= "playNextURL = '{$nextURL}';";
-            $js .= "player.on('ended', function () {setTimeout(function(){playNext(playNextURL);},playerHasAds()?2000:500);});";
+            $js .= "player.on('ended', function () {
+                var time = Math.round(this.currentTime());
+                setTimeout(function(){
+                    playNext(playNextURL, time);
+                },playerHasAds()?2000:500);});";
         }
         self::getStartPlayerJS($js);
         return true;

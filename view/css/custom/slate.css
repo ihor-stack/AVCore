@@ -27,3 +27,46 @@
 .webui-popover {
     background-color: #333;
 }
+button.btn.btn-success.btn-block,
+a.btn.btn-success.btn-block,
+button.btn.btn-primary.btn-block,
+a.btn.btn-primary.btn-block,
+button.btn.btn-danger.btn-block {
+	background: transparent;
+	border: 2px solid grey;
+	font-weight: bold;
+}
+
+.dashboard .panel-blue,
+.dashboard .panel-purple, 
+.dashboard .panel-wine, 
+.dashboard .panel-red, 
+.dashboard .panel-orange, 
+.dashboard .panel-yellow, 
+.dashboard .panel-green {
+    border: 1px solid transparent;
+    background-color: rgba(0,0,0,0.6);
+	color: #fff;
+}
+
+.dashboard .panel .panel-heading {
+    color: #fff;
+    border-color: #000;
+    background-color: #7a8288;
+}
+
+.dashboard .panel a {
+	color: #fff;
+}
+
+.dashboard .panel a:hover {
+	color: lightgrey;
+}
+
+.vjs-menu-button-popup .vjs-menu .vjs-menu-content {
+    z-index: 2;
+}
+
+.VideoLogoOverlay {
+    z-index: 1;
+}

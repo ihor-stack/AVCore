@@ -4,7 +4,7 @@ if(!isset($global['systemRootPath'])){
     require_once '../videos/configuration.php';
 }
 session_write_close();
-header('Access-Control-Allow-Origin: *');
+//header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: Content-Type");
 header('Content-Type: application/json');
 if(empty($_GET['users_id'])){

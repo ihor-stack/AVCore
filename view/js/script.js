@@ -631,10 +631,10 @@ function playerPlayIfAutoPlay(currentTime) {
     return false;
 }
 
-function playNext(url) {
+function playNext(url, currentTime) {
     if (isPlayingAds()) {
         setTimeout(function () {
-            playNext(url);
+            playNext(url, currentTime);
         }, 1000);
     } else if (isPlayNextEnabled()) {
         modal.showPleaseWait();
