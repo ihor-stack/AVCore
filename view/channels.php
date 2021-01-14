@@ -146,6 +146,7 @@ $metaDescription = __("Channels");
                                                 <div class="details row" itemprop="description">
                                                     <div class="liveUser"><?php echo User::getNameIdentificationById($futureLiveStream['users_id']); ?></div>
 												 <div class="liveDate"><?php echo date('F j g:ia', strtotime($futureLiveStream['live_starts'])); ?></div>
+												 <span class="label label-success" style="font-size: 10.5px; margin-top: 6px; display: inline-block;">Buy</span>
                                                 </div>
                                             </div>
                                         </a>
