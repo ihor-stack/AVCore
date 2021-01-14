@@ -122,7 +122,7 @@ if (!empty($advancedCustom->footerHTMLCode->value)) {
 <script>
     var checkFooterTimout;
     $(function () {
-        checkFooter();
+        /*checkFooter();
 
         $(window).scroll(function () {
             clearTimeout(checkFooterTimout);
@@ -142,7 +142,7 @@ if (!empty($advancedCustom->footerHTMLCode->value)) {
             checkFooterTimout = setTimeout(function () {
                 checkFooter();
             }, 100);
-        });
+        });*/
 
 <?php echo $footerjs; ?>
 
