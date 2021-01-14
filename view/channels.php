@@ -97,13 +97,11 @@ $metaDescription = __("Channels");
                         </div>
                     </form>
                 </div>
+
                 <div class="panel-body" >
                     <ul class="pages">
                     </ul>
-                    <?php
-                    foreach ($channels as $value) {
-                        $get = array('channelName' => $value['channelName']);
-                        ?>
+
 			            <!-- For Live Videos -->
 						<div class="panel panel-default" id="liveVideos" style="display: none;">
                             <div class="panel-heading">
@@ -125,8 +123,8 @@ $metaDescription = __("Channels");
                         </script>
 
                         <!-- For Upcoming Live Streams -->
-                        <?php 
-                        if ($ppvlive = AVideoPlugin::getDataObjectIfEnabled("Live")) {
+                        <?php
+                        if ($ppvlive = AVideoPlugin::getDataObjectIfEnabled("PayPerViewLive")) {
                             ?>
                             <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -134,13 +132,38 @@ $metaDescription = __("Channels");
                                 </div>
                                 <div class="panel-body gallery ">
                                 <?php
-                                    $futureLiveStreams = Ppvlive_schedule::getAll(0, true);
-                                    createGallerySection($futureLiveStreams);
+                                    $futureLiveStreams = Ppvlive_schedule::getAll(0, true); ?>
+								  <div class="row galeryRowElement">
+								  <?php foreach ($futureLiveStreams as $futureLiveStream) {?>
+                        				<div class="liveVideo col-lg-2 col-md-4 col-sm-4 col-xs-6 fixPadding">
+                                        <a href="<?php echo $global['webSiteRootURL'] . 'plugin/PayPerViewLive/View/buy.php?users_id=' . $futureLiveStream['users_id'] . '&redirectUri=' . urlencode(getSelfURI()); ?>" class="h6 videoLink">
+                                            <div class="col-lg-5 col-sm-5 col-xs-5 nopadding thumbsImage" style="min-height: 70px; position:relative;" >
+                                                <img src="<?php echo User::getPhoto($futureLiveStream['users_id']); ?>" class="thumbsJPG img-responsive" height="130" itemprop="thumbnailUrl" alt="Logo" />
+                                                <span class="label label-danger liveNow faa-flash faa-slow animated"><?php echo __("BUY NOW"); ?></span>
+                                            </div>
+                                            <div class="col-lg-7 col-sm-7 col-xs-7 videosDetails">
+                                                <div class="text-uppercase row"><strong itemprop="name" class="title liveTitle"><?php echo $futureLiveStream['name']; ?></strong></div>
+                                                <div class="details row" itemprop="description">
+                                                    <div class="liveUser"><?php echo User::getNameIdentificationById($futureLiveStream['users_id']); ?></div>
+												 <div class="liveDate"><?php echo date('F j g:ia', strtotime($futureLiveStream['live_starts'])); ?></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+								  <?php
+								  }
                                 ?>
+							   </div>
+		
                                </div>
                             </div>
                             <?php
                         }
+                        ?>
+
+                    <?php
+                    foreach ($channels as $value) {
+                        $get = array('channelName' => $value['channelName']);
                         ?>
 
                         <!-- VOD channels -->

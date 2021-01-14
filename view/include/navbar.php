@@ -287,7 +287,7 @@ if (!User::isLogged() && !empty($advancedCustomUser->userMustBeLoggedIn) && !emp
                                 youTubeMenuIsOpened = false;
                             }
                             $(document).ready(function () {
-                                if (inIframe()) {
+                                if (typeof inIframe !== 'undefined' && inIframe()) {
                                     $("#mainNavBar").hide();
                                     $("body").css("padding-top", "0");
                                 }
