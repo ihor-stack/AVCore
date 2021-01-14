@@ -32,7 +32,7 @@ if (empty($obj->doNotShowGoLiveButton) && User::canStream()) {
     <?php
 }
 ?>
-<li class="dropdown">
+<li class="dropdown hidden">
     <a href="#" class=" btn btn-default navbar-btn" data-toggle="dropdown">
         <span class="fa fa-bell"></span>
         <span class="badge onlineApplications" style=" background: rgba(255,0,0,1); color: #FFF;">0</span>
