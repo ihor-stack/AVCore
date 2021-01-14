@@ -113,20 +113,37 @@ $metaDescription = __("Channels");
 							  <div class="extraVideos"></div>
 						   </div>
 						</div>
+                        <script>
+                            function afterExtraVideos($liveLi) {
+                                $liveLi.removeClass('col-lg-12 col-sm-12 col-xs-12 bottom-border');
+                                $liveLi.find('.thumbsImage').removeClass('col-lg-5 col-sm-5 col-xs-5');
+                                $liveLi.find('.videosDetails').removeClass('col-lg-7 col-sm-7 col-xs-7');
+                                $liveLi.addClass('col-lg-2 col-md-4 col-sm-4 col-xs-6 fixPadding');
+                                $('#liveVideos').slideDown();
+                                return $liveLi;
+                            }
+                        </script>
 
-                
-            <script>
-                function afterExtraVideos($liveLi) {
-                    $liveLi.removeClass('col-lg-12 col-sm-12 col-xs-12 bottom-border');
-                    $liveLi.find('.thumbsImage').removeClass('col-lg-5 col-sm-5 col-xs-5');
-                    $liveLi.find('.videosDetails').removeClass('col-lg-7 col-sm-7 col-xs-7');
-                    $liveLi.addClass('col-lg-2 col-md-4 col-sm-4 col-xs-6 fixPadding');
-                    $('#liveVideos').slideDown();
-                    return $liveLi;
-                }
-            </script>
+                        <!-- For Upcoming Live Streams -->
+                        <?php 
+                        if ($ppvlive = AVideoPlugin::getDataObjectIfEnabled("Live")) {
+                            ?>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                  <i class="fas fa-play-circle"></i> <?php echo __("Upcoming Live Shows"); ?>
+                                </div>
+                                <div class="panel-body gallery ">
+                                <?php
+                                    $futureLiveStreams = Ppvlive_schedule::getAll(0, true);
+                                    createGallerySection($futureLiveStreams);
+                                ?>
+                               </div>
+                            </div>
+                            <?php
+                        }
+                        ?>
 
-
+                        <!-- VOD channels -->
                         <div class="panel panel-default">
                             <div class="panel-heading" style="position: relative;">
                                 <img src="<?php echo User::getPhoto($value['id']); ?>"
