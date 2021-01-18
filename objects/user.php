@@ -552,20 +552,9 @@ if (typeof gtag !== \"function\") {
         if (empty($this->isAdmin)) {
             $this->isAdmin = "false";
         }
-        if (empty($this->canStream)) {
-            if (empty($this->id)) { // it is a new user
-                if (empty($advancedCustomUser->newUsersCanStream)) {
-                    $this->canStream = "0";
-                } else {
-                    $this->canStream = "1";
-                }
-            } else {
-                $this->canStream = "0";
-            }
-        }
-        if (empty($this->canUpload)) {
-            $this->canUpload = "0";
-        }
+        $this->canStream = $this->isClient() ? '0' : '1';
+        $this->canUpload = $this->isClient() ? '0' : '1';
+
         if (empty($this->status)) {
             $this->status = 'a';
         }
@@ -1001,7 +990,7 @@ if (typeof gtag !== \"function\") {
 
     public static function canStream() {
         self::recreateLoginFromCookie();
-        return !empty($_SESSION['user']['isAdmin']) || !empty($_SESSION['user']['canStream']);
+        return !empty($_SESSION['user']['isAdmin']) || !self::isClient();
     }
 
     public static function externalOptions($id) {
@@ -1600,6 +1589,9 @@ if (typeof gtag !== \"function\") {
 
     public static function canUpload($doNotCheckPlugins = false) {
         global $global, $config, $advancedCustomUser;
+        if (self::isClient()) {
+            return false;
+        }
         if (Permissions::canModerateVideos()) {
             return true;
         }
@@ -1625,6 +1617,9 @@ if (typeof gtag !== \"function\") {
 
     public static function canViewChart() {
         global $global, $config;
+        if (self::isClient()) {
+            return false;
+        }
         if (self::isLogged() && !empty($_SESSION['user']['canViewChart'])) {
             return true;
         }
@@ -1633,6 +1628,9 @@ if (typeof gtag !== \"function\") {
 
     public static function canCreateMeet() {
         global $global, $config;
+        if (self::isClient()) {
+            return false;
+        }
         if (self::isLogged() && !empty($_SESSION['user']['canCreateMeet'])) {
             return true;
         }
@@ -2290,20 +2288,19 @@ if (typeof gtag !== \"function\") {
         return sqlDAL::writeSql($sql, "si", array($string, $users_id));
     }
 
-    function isClient() {
-        return !$this->isPerformer() && !$this->isManager() && !$this->isStudio();
+    static function isClient() {
+        return !self::isPerformer() && !self::isManager() && !self::isStudio();
     }
 
-    function isPerformer() {
-        return User::externalOptions("checkmark1");
+    static function isPerformer() {
+        return self::externalOptions("checkmark1");
     }
 
-    function isManager() {
-        return User::externalOptions("checkmark2");
+    static function isManager() {
+        return self::externalOptions("checkmark2");
     }
 
-    function isStudio() {
-        return User::externalOptions("checkmark3");
+    static function isStudio() {
+        return self::externalOptions("checkmark3");
     }
-
 }
