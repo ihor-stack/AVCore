@@ -146,13 +146,13 @@ class CustomizeUser extends PluginAbstract {
         $obj = $this->getDataObject();
         $userOptions = array();
         if ($obj->Checkmark1Enabled) {
-            $userOptions["Checkmark 1"] = "checkmark1";
+            $userOptions["Is Performer"] = "checkmark1";
         }
         if ($obj->Checkmark2Enabled) {
-            $userOptions["Checkmark 2"] = "checkmark2";
+            $userOptions["Is Manager"] = "checkmark2";
         }
         if ($obj->Checkmark3Enabled) {
-            $userOptions["Checkmark 3"] = "checkmark3";
+            $userOptions["Is Studio"] = "checkmark3";
         }
         return $userOptions;
     }
