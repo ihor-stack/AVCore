@@ -116,34 +116,6 @@
                             </div>
                         </li>
                         <li class="list-group-item">
-                            <?php echo __("Can Stream Videos"); ?>
-                            <div class="material-switch pull-right">
-                                <input type="checkbox" value="canStream" id="canStream"/>
-                                <label for="canStream" class="label-success"></label>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <?php echo __("Can Upload Videos"); ?>
-                            <div class="material-switch pull-right">
-                                <input type="checkbox" value="canUpload" id="canUpload"/>
-                                <label for="canUpload" class="label-success"></label>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <?php echo __("Can view chart"); ?>
-                            <div class="material-switch pull-right">
-                                <input type="checkbox" value="canViewChart" id="canViewChart"/>
-                                <label for="canViewChart" class="label-success"></label>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <?php echo __("Can create meet"); ?>
-                            <div class="material-switch pull-right">
-                                <input type="checkbox" value="canCreateMeet" id="canCreateMeet"/>
-                                <label for="canCreateMeet" class="label-success"></label>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
                             <?php echo __("E-mail Verified"); ?>
                             <div class="material-switch pull-right">
                                 <input type="checkbox" value="isEmailVerified" id="isEmailVerified"/>
@@ -302,10 +274,6 @@
             $('#inputChannelName').val('');
             $('#inputAnalyticsCode').val('');
             $('#isAdmin').prop('checked', false);
-            $('#canStream').prop('checked', false);
-            $('#canUpload').prop('checked', false);
-            $('#canViewChart').prop('checked', false);
-            $('#canCreateMeet').prop('checked', false);
             $('.userGroups').prop('checked', false);
             $('#status').prop('checked', true);
             $('#isEmailVerified').prop('checked', false);
@@ -344,10 +312,6 @@ print AVideoPlugin::updateUserFormJS();
                                 "channelName": $('#inputChannelName').val(),
                                 "analyticsCode": $('#inputAnalyticsCode').val(),
                                 "isAdmin": $('#isAdmin').is(':checked'),
-                                "canStream": $('#canStream').is(':checked'),
-                                "canUpload": $('#canUpload').is(':checked'),
-                                "canViewChart": $('#canViewChart').is(':checked'),
-                                "canCreateMeet": $('#canCreateMeet').is(':checked'),
                                 "status": $('#status').is(':checked') ? 'a' : 'i',
                                 "isEmailVerified": $('#isEmailVerified').is(':checked'),
                                 "userGroups": selectedUserGroups,
@@ -431,10 +395,6 @@ print AVideoPlugin::updateUserFormJS();
                     $('#userGroup' + row.groups[index].id).prop('checked', true);
                 }
                 $('#isAdmin').prop('checked', (row.isAdmin == "1" ? true : false));
-                $('#canStream').prop('checked', (row.canStream == "1" ? true : false));
-                $('#canUpload').prop('checked', (row.canUpload == "1" ? true : false));
-                $('#canViewChart').prop('checked', (row.canViewChart == "1" ? true : false));
-                $('#canCreateMeet').prop('checked', (row.canCreateMeet == "1" ? true : false));
                 $('#status').prop('checked', (row.status === "a" ? true : false));
                 $('#isEmailVerified').prop('checked', (row.isEmailVerified == "1" ? true : false));
 <?php
