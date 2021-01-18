@@ -2290,4 +2290,20 @@ if (typeof gtag !== \"function\") {
         return sqlDAL::writeSql($sql, "si", array($string, $users_id));
     }
 
+    function isClient() {
+        return !$this->isPerformer() && !$this->isManager() && !$this->isStudio();
+    }
+
+    function isPerformer() {
+        return User::externalOptions("checkmark1");
+    }
+
+    function isManager() {
+        return User::externalOptions("checkmark2");
+    }
+
+    function isStudio() {
+        return User::externalOptions("checkmark3");
+    }
+
 }
