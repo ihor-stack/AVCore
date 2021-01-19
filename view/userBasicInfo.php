@@ -120,7 +120,7 @@ if (empty($advancedCustomUser->allowDonationLink)) {
     <label class="col-md-4 control-label"><?php echo __("Website"); ?></label>
     <div class="col-md-8 inputGroupContainer">
         <div class="input-group">
-            <span class="input-group-addon"><i class="fas fa-donate"></i></span>
+            <span class="input-group-addon"><i class="fas fa-globe"></i></span>
             <input  id="donationLink" placeholder="<?php echo __("Website"); ?>" class="form-control"  type="url" value="<?php echo $user->getDonationLink(); ?>" >
         </div>
     </div>
@@ -175,28 +175,34 @@ AVideoPlugin::getMyAccount(User::getId());
             </div>
         </div>
     </div>
-    <div class="col-sm-9">
-        <div class="panel panel-default">
-            <div class="panel-heading"><?php echo __("Channel Art"); ?><br>
-                <small><?php echo __("For the best results, please Use this image as a guide to create your Channel Art"); ?></small>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-sm-7">
-                        <input id="input-jpg" type="file" class="file-loading" accept="image/*">
-                    </div>
-                    <div class="col-sm-5">
-                        <img src="<?php echo $global['webSiteRootURL']; ?>view/img/sampleGuide.png" class="img img-responsive">
-                        <hr>
-                        <b><?php echo __("minImageWidth"); ?>:</b> 2048px<br>
-                        <b><?php echo __("minImageHeight"); ?>:</b> 1152px<br>
-                        <b><?php echo __("maxImageWidth"); ?>:</b> 2560px<br>
-                        <b><?php echo __("maxImageHeight"); ?>:</b> 1440px<br>
+    <?php 
+        if(User::isStudio()) {
+        ?>
+        <div class="col-sm-9">
+            <div class="panel panel-default">
+                <div class="panel-heading"><?php echo __("Channel Art"); ?><br>
+                    <small><?php echo __("For the best results, please Use this image as a guide to create your Channel Art"); ?></small>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <input id="input-jpg" type="file" class="file-loading" accept="image/*">
+                        </div>
+                        <div class="col-sm-5">
+                            <img src="<?php echo $global['webSiteRootURL']; ?>view/img/sampleGuide.png" class="img img-responsive">
+                            <hr>
+                            <b><?php echo __("minImageWidth"); ?>:</b> 2048px<br>
+                            <b><?php echo __("minImageHeight"); ?>:</b> 1152px<br>
+                            <b><?php echo __("maxImageWidth"); ?>:</b> 2560px<br>
+                            <b><?php echo __("maxImageHeight"); ?>:</b> 1440px<br>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        <?php
+        }
+    ?>
 </div>
 
 
