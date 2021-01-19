@@ -10,9 +10,30 @@ $bgURL = User::getBackgroundURLFromUserID(User::getId());
         height: auto;
     }
 </style>
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading"><?php echo __("Profile Photo"); ?><br><small><?php echo __("You must click save to confirm"); ?></small></div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <div class="col-md-12 ">
+                        <div id="croppie"></div>
+                        <center>
+                            <a id="upload-btn" class="btn btn-primary"><i class="fa fa-upload"></i> <?php echo __("Upload a Photo"); ?></a>
+                        </center>
+                        <div class="alert alert-info">
+                            <?php echo __("Make sure you click on the Save button after change the photo"); ?>
+                        </div>
+                    </div>
+                    <input type="file" id="upload" value="Choose a file" accept="image/*" style="display: none;" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">        
 <div class="form-group">
-    <label class="col-md-4 control-label"><?php echo __("Name"); ?></label>
-    <div class="col-md-8 inputGroupContainer">
+    <label class="col-md-2 control-label"><?php echo __("Name"); ?></label>
+    <div class="col-md-10 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
             <input  id="inputName" placeholder="<?php echo __("Name"); ?>" class="form-control"  type="text" value="<?php echo $user->getName(); ?>" required >
@@ -21,8 +42,8 @@ $bgURL = User::getBackgroundURLFromUserID(User::getId());
 </div>
 
 <div class="form-group">
-    <label class="col-md-4 control-label"><?php echo __("User"); ?></label>
-    <div class="col-md-8 inputGroupContainer">
+    <label class="col-md-2 control-label"><?php echo __("User"); ?></label>
+    <div class="col-md-10 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
             <input  id="inputUser" placeholder="<?php echo!empty($advancedCustomUser->forceLoginToBeTheEmail) ? "me@example.com" : __("User"); ?>" class="form-control"  type="<?php echo empty($advancedCustomUser->forceLoginToBeTheEmail) ? "text" : "email" ?>" value="<?php echo $user->getUser(); ?>" required <?php echo (AVideoPlugin::isEnabledByName("LoginLDAP") || empty($advancedCustomUser->userCanChangeUsername)) ? "readonly" : ""; ?>  >
@@ -31,7 +52,7 @@ $bgURL = User::getBackgroundURLFromUserID(User::getId());
 </div>
 
 <div class="form-group">
-    <label class="col-md-4 control-label"><?php echo __("E-mail"); ?></label>
+    <label class="col-md-2 control-label"><?php echo __("E-mail"); ?></label>
     <div class="col-md-6 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
@@ -43,7 +64,7 @@ $bgURL = User::getBackgroundURLFromUserID(User::getId());
             ?>    >
         </div>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-4">
         <?php
         if ($user->getEmailVerified()) {
             ?>
@@ -81,8 +102,8 @@ $bgURL = User::getBackgroundURLFromUserID(User::getId());
 </div>
 
 <div class="form-group">
-    <label class="col-md-4 control-label"><?php echo __("New Password"); ?></label>
-    <div class="col-md-8 inputGroupContainer">
+    <label class="col-md-2 control-label"><?php echo __("New Password"); ?></label>
+    <div class="col-md-10 inputGroupContainer">
         <?php
         getInputPassword("inputPassword", 'class="form-control"  autocomplete="off"', __("New Password"));
         ?>
@@ -90,8 +111,8 @@ $bgURL = User::getBackgroundURLFromUserID(User::getId());
 </div>
 
 <div class="form-group">
-    <label class="col-md-4 control-label"><?php echo __("Confirm New Password"); ?></label>
-    <div class="col-md-8 inputGroupContainer">
+    <label class="col-md-2 control-label"><?php echo __("Confirm New Password"); ?></label>
+    <div class="col-md-10 inputGroupContainer">
         <?php
         getInputPassword("inputPasswordConfirm", 'class="form-control"  autocomplete="off"', __("Confirm New Password"));
         ?>
@@ -103,8 +124,8 @@ if (!empty($advancedCustomUser->doNotShowMyChannelNameOnBasicInfo)) {
     echo " hidden ";
 }
 ?>">
-    <label class="col-md-4 control-label"><?php echo __("Channel Name"); ?></label>
-    <div class="col-md-8 inputGroupContainer">
+    <label class="col-md-2 control-label"><?php echo __("Channel Name"); ?></label>
+    <div class="col-md-10 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fas fa-play-circle"></i></span>
             <input  id="channelName" placeholder="<?php echo __("Channel Name"); ?>" class="form-control"  type="text" value="<?php echo $user->getChannelName(); ?>" >
@@ -117,8 +138,8 @@ if (empty($advancedCustomUser->allowDonationLink)) {
     echo " hidden ";
 }
 ?>">
-    <label class="col-md-4 control-label"><?php echo __("Website"); ?></label>
-    <div class="col-md-8 inputGroupContainer">
+    <label class="col-md-2 control-label"><?php echo __("Website"); ?></label>
+    <div class="col-md-10 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fas fa-globe"></i></span>
             <input  id="donationLink" placeholder="<?php echo __("Website"); ?>" class="form-control"  type="url" value="<?php echo $user->getDonationLink(); ?>" >
@@ -131,8 +152,8 @@ if (!empty($advancedCustomUser->doNotShowMyAnalyticsCodeOnBasicInfo)) {
     echo " hidden ";
 }
 ?>">
-    <label class="col-md-4 control-label"><?php echo __("Analytics Code"); ?></label>
-    <div class="col-md-8 inputGroupContainer">
+    <label class="col-md-2 control-label"><?php echo __("Analytics Code"); ?></label>
+    <div class="col-md-10 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fas fa-chart-line"></i></span>
             <input  id="analyticsCode" placeholder="UA-123456789-1" class="form-control"  type="text" value="<?php echo $user->getAnalyticsCode(); ?>" >
@@ -146,9 +167,12 @@ if (!empty($advancedCustomUser->doNotShowMyAboutOnBasicInfo)) {
     echo " hidden ";
 }
 ?> ">
-    <label class="col-md-4 control-label"><?php echo __("About"); ?></label>
-    <div class="col-md-8 inputGroupContainer">
+    <label class="col-md-2 control-label"><?php echo __("About"); ?></label>
+    <div class="col-md-10 inputGroupContainer">
         <textarea id="textAbout" placeholder="<?php echo __("About"); ?>" class="form-control"  ><?php echo $user->getAbout(); ?></textarea>
+    </div>
+</div>
+
     </div>
 </div>
 
@@ -156,25 +180,6 @@ if (!empty($advancedCustomUser->doNotShowMyAboutOnBasicInfo)) {
 AVideoPlugin::getMyAccount(User::getId());
 ?>
 <div class="row">
-    <div class="col-sm-3">
-        <div class="panel panel-default">
-            <div class="panel-heading"><?php echo __("Profile Photo"); ?><br><small><?php echo __("You must click save to confirm"); ?></small></div>
-            <div class="panel-body">
-                <div class="form-group">
-                    <div class="col-md-12 ">
-                        <div id="croppie"></div>
-                        <center>
-                            <a id="upload-btn" class="btn btn-primary"><i class="fa fa-upload"></i> <?php echo __("Upload a Photo"); ?></a>
-                        </center>
-                        <div class="alert alert-info">
-                            <?php echo __("Make sure you click on the Save button after change the photo"); ?>
-                        </div>
-                    </div>
-                    <input type="file" id="upload" value="Choose a file" accept="image/*" style="display: none;" />
-                </div>
-            </div>
-        </div>
-    </div>
     <?php 
         if(User::isStudio()) {
         ?>
