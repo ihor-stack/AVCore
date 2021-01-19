@@ -117,11 +117,11 @@ if (empty($advancedCustomUser->allowDonationLink)) {
     echo " hidden ";
 }
 ?>">
-    <label class="col-md-4 control-label"><?php echo __("Donation Link"); ?></label>
+    <label class="col-md-4 control-label"><?php echo __("Website"); ?></label>
     <div class="col-md-8 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fas fa-donate"></i></span>
-            <input  id="donationLink" placeholder="<?php echo __("Donation Link"); ?>" class="form-control"  type="url" value="<?php echo $user->getDonationLink(); ?>" >
+            <input  id="donationLink" placeholder="<?php echo __("Website"); ?>" class="form-control"  type="url" value="<?php echo $user->getDonationLink(); ?>" >
         </div>
     </div>
 </div>
