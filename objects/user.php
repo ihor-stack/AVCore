@@ -2289,7 +2289,7 @@ if (typeof gtag !== \"function\") {
     }
 
     static function isClient() {
-        return !self::isPerformer() && !self::isManager() && !self::isStudio();
+        return !self::isPerformer() && !self::isManager() && !self::isStudio() && !self::isAdmin();
     }
 
     static function isPerformer() {
