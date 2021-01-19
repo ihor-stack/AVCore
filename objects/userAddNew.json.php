@@ -67,5 +67,10 @@ if (empty($_POST['userGroups'])) {
 
 _error_log("userAddNew.json.php: saving");
 $users_id = $user->save(true);
+
+if (!empty($users_id) && ($subscription = AVideoPlugin::loadPluginIfEnabled('Subscription'))) {
+    $subscription->onUserSignup($users_id);
+}
+
 echo '{"status":"'.$users_id.'"}';
 _error_log("userAddNew.json.php: saved users_id ($users_id)");
