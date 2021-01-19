@@ -11,7 +11,8 @@ $bgURL = User::getBackgroundURLFromUserID(User::getId());
     }
 </style>
 <div class="row">
-    <div class="col-md-4">
+    
+    <div class="col-md-4" style="display: <?php echo User::isClient() ? 'none' : ''; ?>">
         <div class="panel panel-default">
             <div class="panel-heading"><?php echo __("Profile Photo"); ?><br><small><?php echo __("You must click save to confirm"); ?></small></div>
             <div class="panel-body">
@@ -68,7 +69,7 @@ $bgURL = User::getBackgroundURLFromUserID(User::getId());
         <?php
         if ($user->getEmailVerified()) {
             ?>
-            <span class="btn btn-success"><i class="fa fa-check"></i> <?php echo __("E-mail Verified"); ?></span>
+            <span class="btn btn-default"><i class="fa fa-check"></i> <?php echo __("E-mail Verified"); ?></span>
             <?php
         } else {
             ?>
@@ -163,7 +164,7 @@ if (!empty($advancedCustomUser->doNotShowMyAnalyticsCodeOnBasicInfo)) {
 </div>
 
 <div class="form-group <?php
-if (!empty($advancedCustomUser->doNotShowMyAboutOnBasicInfo)) {
+if (!empty($advancedCustomUser->doNotShowMyAboutOnBasicInfo) || User::isClient()) {
     echo " hidden ";
 }
 ?> ">

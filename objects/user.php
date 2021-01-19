@@ -1699,13 +1699,30 @@ if (typeof gtag !== \"function\") {
             $obj->type = "info";
             $obj->text = __("Admin");
             $tags[] = $obj;
-        } else {
+        } else if ($user->getIsPerformer()) {
             $obj = new stdClass();
-            $obj->type = "default";
-            $obj->text = __("Regular User");
+            $obj->type = "info";
+            $obj->text = __("Performer");
             $tags[] = $obj;
+        } else if ($user->getIsStudio()) {
+            $obj = new stdClass();
+            $obj->type = "info";
+            $obj->text = __("Studio");
+            $tags[] = $obj;
+        } else if ($user->getIsManager()) {
+            $obj = new stdClass();
+            $obj->type = "info";
+            $obj->text = __("Manager");
+            $tags[] = $obj;
+        } else {
+            // Regular user
+            // $obj = new stdClass();
+            // $obj->type = "default";
+            // $obj->text = __("Regular User");
+            // $tags[] = $obj;
         }
 
+        /* We don't want to show these tags
         if ($user->getStatus() == "a") {
             $obj = new stdClass();
             $obj->type = "success";
@@ -1728,6 +1745,7 @@ if (typeof gtag !== \"function\") {
             $obj->text = __("E-mail Not Verified");
             $tags[] = $obj;
         }
+        */
         global $global;
         if (!empty($global['systemRootPath'])) {
             require_once $global['systemRootPath'] . 'objects/userGroups.php';
@@ -1737,7 +1755,7 @@ if (typeof gtag !== \"function\") {
         $groups = UserGroups::getUserGroups($user_id);
         foreach ($groups as $value) {
             $obj = new stdClass();
-            $obj->type = "warning";
+            $obj->type = "primary";
             $obj->text = $value['group_name'];
             $tags[] = $obj;
         }
@@ -2302,5 +2320,21 @@ if (typeof gtag !== \"function\") {
 
     static function isStudio() {
         return self::externalOptions("checkmark3");
+    }
+
+    function getIsClient() {
+        return !$this->getIsPerformer() && !$this->getIsManager() && !$this->getIsStudio() && !$this->getIsAdmin();
+    }
+
+    function getIsPerformer() {
+        return $this->getExternalOption("checkmark1") === "true";
+    }
+
+    function getIsManager() {
+        return $this->getExternalOption("checkmark2") === "true";
+    }
+
+    function getIsStudio() {
+        return $this->getExternalOption("checkmark3") === "true";
     }
 }
