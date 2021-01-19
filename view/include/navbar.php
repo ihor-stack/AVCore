@@ -655,12 +655,18 @@ if (!User::isLogged() && !empty($advancedCustomUser->userMustBeLoggedIn) && !emp
                                                 <?php
                                             }
                                             ?>
-                                            <li>
-                                                <a href="<?php echo User::getChannelLink(); ?>" >
-                                                    <span class="fas fa-play-circle"></span>
-                                                    <?php echo __($advancedCustomUser->MyChannelLabel); ?>
-                                                </a>
-                                            </li>    
+                                            <?php
+                                            if (!User::isClient()) {
+                                                ?>
+                                                <li>
+                                                    <a href="<?php echo User::getChannelLink(); ?>" >
+                                                        <span class="fas fa-play-circle"></span>
+                                                        <?php echo __($advancedCustomUser->MyChannelLabel); ?>
+                                                    </a>
+                                                </li>    
+                                                <?php
+                                            }
+                                            ?>
                                             <?php
                                             print AVideoPlugin::navBarProfileButtons();
 
@@ -842,13 +848,18 @@ if (!User::isLogged() && !empty($advancedCustomUser->userMustBeLoggedIn) && !emp
                                 <?php
                             }
                             ?>
-                            <li>
-
+                            <?php
+                            if (!User::isClient()) {
+                                ?>
+                                <li>
                                     <a href="<?php echo User::getChannelLink(); ?>" style="border-radius: 0;">
                                         <span class="fas fa-play-circle"></span>
                                         <?php echo __($advancedCustomUser->MyChannelLabel); ?>
                                     </a>
-                            </li>    
+                                </li>    
+                                <?php
+                            }
+                            ?>
                             <?php
                             print AVideoPlugin::navBarButtons();
 
