@@ -104,8 +104,13 @@
                     <input type="text" id="inputName" class="form-control " placeholder="<?php echo __("Name"); ?>" >
                     <label for="inputChannelName" class="sr-only"><?php echo __("Channel Name"); ?></label>
                     <input type="text" id="inputChannelName" class="form-control" placeholder="<?php echo __("Channel Name"); ?>" >
-                    <label for="inputAnalyticsCode" class="sr-only"><?php echo __("Analytics Code"); ?></label>
-                    <input type="text" id="inputAnalyticsCode" class="form-control last" placeholder="Google Analytics Code: UA-123456789-1" >
+                    <label for="inputAnalyticsCode" class="sr-only"><?php echo __("Channel Tier: 2.5, 5, 7.5, 10"); ?></label>
+                    <select id="inputAnalyticsCode" class="form-control last">
+                        <option value="">Choose Tier (Studio Only):</option>
+                        <option value="10">Silver Stage Monthly ❤ 10.00 HEART</option>
+                        <option value="20">Gold Stage Monthly ❤ 20.00 HEART</option>
+                        <option value="30">Platinum Stage Monthly ❤ 30.00 HEART</option>
+                    </select>
                     <small>Do not paste the full javascript code, paste only the gtag id</small>
                     <ul class="list-group">
                         <li class="list-group-item <?php echo User::isAdmin() ? "" : "hidden"; ?>">
