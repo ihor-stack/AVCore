@@ -68,6 +68,7 @@
 /plugin/oncologytube/
 /plugin/predefinedCategory/
 /plugin/upload.sh
+/plugin/upload_local.sh
 /videos/
 *.ser
 sitemap.xml

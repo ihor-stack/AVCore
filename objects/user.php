@@ -115,12 +115,13 @@ class User {
     }
 
     public function setAnalyticsCode($analyticsCode) {
-        preg_match("/(ua-\d{4,9}-\d{1,4})/i", $analyticsCode, $matches);
-        if (!empty($matches[1])) {
-            $this->analyticsCode = $matches[1];
-        } else {
-            $this->analyticsCode = "";
-        }
+        $this->analyticsCode = $analyticsCode; // we're using this field for Tier price
+        // preg_match("/(ua-\d{4,9}-\d{1,4})/i", $analyticsCode, $matches);
+        // if (!empty($matches[1])) {
+        //     $this->analyticsCode = $matches[1];
+        // } else {
+        //     $this->analyticsCode = "";
+        // }
     }
 
     public function getAnalytics() {
@@ -552,8 +553,10 @@ if (typeof gtag !== \"function\") {
         if (empty($this->isAdmin)) {
             $this->isAdmin = "false";
         }
-        $this->canStream = $this->isClient() ? '0' : '1';
-        $this->canUpload = $this->isClient() ? '0' : '1';
+        $this->canStream     = $this->isClient() ? '0' : '1';
+        $this->canUpload     = $this->isClient() ? '0' : '1';
+        $this->canCreateMeet = $this->isClient() ? '0' : '1';
+        $this->canViewChart  = $this->isClient() ? '0' : '1';
 
         if (empty($this->status)) {
             $this->status = 'a';
