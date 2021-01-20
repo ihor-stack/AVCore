@@ -1504,7 +1504,7 @@ function im_resizeV3($file_src, $file_dest, $wd, $hd) {
     // This tries to preserve the aspect ratio of the thumb while letterboxing it in
     // The same way that the encoder now does.
     eval('$ffmpeg ="ffmpeg -i {$file_src} -filter_complex \"scale=(iw*sar)*min({$wd}/(iw*sar)\,{$hd}/ih):ih*min({$wd}/(iw*sar)\,{$hd}/ih), pad={$wd}:{$hd}:({$wd}-iw*min({$wd}/iw\,{$hd}/ih))/2:({$hd}-ih*min({$wd}/iw\,{$hd}/ih))/2\" -sws_flags lanczos -qscale:v 2 {$file_dest}";');
-    exec($ffmpeg . " < /dev/null 2>&1", $output, $return_val);
+    exec($ffmpeg . " > & /dev/null", $output, $return_val);
 }
 
 function im_resize_max_size($file_src, $file_dest, $max_width, $max_height) {
@@ -3535,7 +3535,7 @@ function getDirSize($dir) {
         return foldersize($dir);
     } else {
         $command = "du -s -k {$dir}";
-        exec($command . " < /dev/null 2>&1", $output, $return_val);
+        exec($command, $output, $return_val);
         if ($return_val !== 0) {
             _error_log("getDirSize: ERROR ON Command {$command}");
             return 0;

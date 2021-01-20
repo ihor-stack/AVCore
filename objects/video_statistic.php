@@ -181,7 +181,7 @@ class VideoStatistic extends ObjectYPT
             // file older than 1 min
             $command = ("php '{$global['systemRootPath']}objects/getTotalLastDaysAsync.php' '$video_id' '$numberOfDays' '$cacheFileName'");
             _error_log("getTotalLastDaysAsync: {$command}");
-            exec($command . " > /dev/null 2>/dev/null &");
+            exec($command . " > & /dev/null &");
         }
         return $return;
     }
@@ -226,7 +226,7 @@ class VideoStatistic extends ObjectYPT
             // file older than 1 min
             $command = ("php '{$global['systemRootPath']}objects/getTotalTodayAsync.php' '$video_id' '$cacheFileName'");
             _error_log("getTotalTodayAsync: {$command}");
-            exec($command . " > /dev/null 2>/dev/null &");
+            exec($command . " > & /dev/null &");
         }
         return $return;
     }

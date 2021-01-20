@@ -1337,7 +1337,7 @@ if (!class_exists('Video')) {
                 // file older than 1 min
                 $command = ("php '{$global['systemRootPath']}objects/getAllVideosAsync.php' '$status' '$showOnlyLoggedUserVideos' '$ignoreGroup' '" . json_encode($videosArrayId) . "' '$getStatistcs' '$showUnlisted' '$activeUsersOnly' '{$get}' '{$post}' '{$cacheFileName}'");
                 _error_log("getAllVideosAsync: {$command}");
-                exec($command . " > /dev/null 2>/dev/null &");
+                exec($command . " > & /dev/null &");
             }
             return object_to_array($return);
         }
@@ -1585,7 +1585,7 @@ if (!class_exists('Video')) {
                         . " '$status' '$showOnlyLoggedUserVideos' '$ignoreGroup', '" . json_encode($videosArrayId) . "', "
                         . " '$getStatistcs', '$cacheFileName'");
                 //_error_log("getTotalVideosInfoAsync: {$command}");
-                exec($command . " > /dev/null 2>/dev/null &");
+                exec($command . " > & /dev/null &");
             }
             return $return;
         }
@@ -2414,7 +2414,7 @@ if (!class_exists('Video')) {
                 // file older than 1 min
                 $command = ("php '{$global['systemRootPath']}objects/getTags.php' '$video_id' '$type' '{$cacheFileName}'");
                 //_error_log("getTags: {$command}");
-                exec($command . " > /dev/null 2>/dev/null &");
+                exec($command . " > & /dev/null &");
             }
             return (array) $return;
         }
@@ -3397,7 +3397,7 @@ if (!class_exists('Video')) {
                 // file older than 1 min
                 $command = ("php '{$global['systemRootPath']}objects/getImageFromFilenameAsync.php' '$filename' '$type' '{$cacheFileName}'");
                 //_error_log("getImageFromFilenameAsync: {$command}");
-                exec($command . " > /dev/null 2>/dev/null &");
+                exec($command . " > & /dev/null &");
             }
             return $return;
         }
