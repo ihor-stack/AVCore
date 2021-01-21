@@ -221,15 +221,18 @@ function modAliasEnabled() {
 }
 
 function isFFMPEG() {
-    return trim(shell_exec('which ffmpeg'));
+    //return trim(shell_exec('which ffmpeg'));
+    return '/usr/local/bin/ffmpeg';
 }
 
 function isUnzip() {
-    return trim(shell_exec('which unzip'));
+    //return trim(shell_exec('which unzip'));
+    return '/usr/bin/unzip';
 }
 
 function isExifToo() {
-    return trim(shell_exec('which exiftool'));
+    //return trim(shell_exec('which exiftool'));
+    return '/usr/local/bin/exiftool';
 }
 
 function getPathToApplication() {
