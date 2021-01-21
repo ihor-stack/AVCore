@@ -1,5 +1,7 @@
 <?php
 
+chdir(__DIR__);
+
 require_once '../videos/configuration.php';
 require_once $global['systemRootPath'] . 'objects/video.php';
 //getAllVideosAsync($status = "viewable", $showOnlyLoggedUserVideos = false, $ignoreGroup = false, $videosArrayId = array(), $getStatistcs = false, $showUnlisted = false, $activeUsersOnly = true)
