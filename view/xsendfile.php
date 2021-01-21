@@ -27,7 +27,7 @@ if ($file == "X-Sendfile.mp4") {
     header('Pragma: public');
     header('Content-Type: application/json');
     header('Content-Length: ' . filesize($path));
-    header("X-Sendfile: {$path}");
+    header("X-Accel-Redirect: {$path}");
     exit;
 }
 
@@ -61,7 +61,8 @@ if (file_exists($path)) {
         }
         if (empty($advancedCustom->doNotUseXsendFile)) {
             //_error_log("X-Sendfile: {$path}");
-            header("X-Sendfile: {$path}");
+            //header("X-Sendfile: {$path}");
+            header("X-Accel-Redirect: " . str_replace($global['videos_directory'], '/protected/', $path));
         }
     } else {
         $advancedCustom->doNotUseXsendFile = true;
