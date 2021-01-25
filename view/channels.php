@@ -124,15 +124,14 @@ $metaDescription = __("Channels");
 
                         <!-- For Upcoming Live Streams -->
                         <?php
-                        if ($ppvlive = AVideoPlugin::getDataObjectIfEnabled("PayPerViewLive")) {
+                        if (($ppvlive = AVideoPlugin::getDataObjectIfEnabled("PayPerViewLive")) &&
+                            ($futureLiveStreams = Ppvlive_schedule::getAll(0, true))) {
                             ?>
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                   <i class="fas fa-play-circle"></i> <?php echo __("Upcoming Live Shows"); ?>
                                 </div>
                                 <div class="panel-body gallery ">
-                                <?php
-                                    $futureLiveStreams = Ppvlive_schedule::getAll(0, true); ?>
 								  <div class="row galeryRowElement">
 								  <?php foreach ($futureLiveStreams as $futureLiveStream) {?>
                         				<div class="liveVideo col-lg-2 col-md-4 col-sm-4 col-xs-6 fixPadding">
