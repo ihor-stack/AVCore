@@ -679,7 +679,7 @@ if (!User::isLogged() && !empty($advancedCustomUser->userMustBeLoggedIn) && !emp
                                                     </a>
                                                 </li>
                                                 <?php
-                                            } if (User::canUpload()) {
+                                            } if (User::canUpload() && empty($advancedCustom->removeSubscribeButton)) {
                                                 ?>
                                                 <li>
                                                     <a href="<?php echo $global['webSiteRootURL']; ?>subscribes">
@@ -872,7 +872,7 @@ if (!User::isLogged() && !empty($advancedCustomUser->userMustBeLoggedIn) && !emp
                                         </a>
                                 </li>
                                 <?php
-                            } if (User::canUpload()) {
+                            } if (User::canUpload() && empty($advancedCustom->removeSubscribeButton)) {
                                 ?>
                                 <li>
                                         <a href="<?php echo $global['webSiteRootURL']; ?>subscribes"  style="border-radius: 0">
