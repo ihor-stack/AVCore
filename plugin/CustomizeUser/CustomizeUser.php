@@ -420,6 +420,9 @@ class CustomizeUser extends PluginAbstract {
     }
     
     public static function profileTabName($users_id) {
+        if (User::isClient()) {
+            return "";
+        }
         $p = AVideoPlugin::loadPlugin("CustomizeUser");
         $obj = $p->getDataObject();
         if(empty($obj->enableExtraInfo)){
@@ -430,6 +433,9 @@ class CustomizeUser extends PluginAbstract {
 
     public static function profileTabContent($users_id) {
         global $global;
+        if (User::isClient()) {
+            return "";
+        }
         $p = AVideoPlugin::loadPlugin("CustomizeUser");
         $obj = $p->getDataObject();
         if(empty($obj->enableExtraInfo)){
