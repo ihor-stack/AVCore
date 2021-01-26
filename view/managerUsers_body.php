@@ -108,11 +108,17 @@
                     <label for="inputChannelName" class="sr-only"><?php echo __("Channel Name"); ?></label>
                     <input type="text" id="inputChannelName" class="form-control" placeholder="<?php echo __("Channel Name"); ?>" >
                     <label for="inputAnalyticsCode" class="sr-only"><?php echo __("Channel Tier: 2.5, 5, 7.5, 10"); ?></label>
-                    <select id="inputAnalyticsCode" class="form-control last">
+                    <select id="inputAnalyticsCode" class="form-control">
                         <option value="">Choose Tier (Studio Only):</option>
                         <option value="10">Silver Stage Monthly ❤ 10.00 HEART</option>
                         <option value="20">Gold Stage Monthly ❤ 20.00 HEART</option>
                         <option value="30">Platinum Stage Monthly ❤ 30.00 HEART</option>
+                    </select>
+                    <label for="inputStudioId" class="sr-only"><?php echo __("Studio"); ?></label>
+                    <select id="inputStudioId" class="form-control last">
+                        <option value="">Choose A Studio (Performers Only):</option>
+                        <?php require_once $global['systemRootPath'] . 'objects/Studio.php'; ?>
+                        <?php echo join(Studio::getOptions()); ?>
                     </select>
                     <small>Do not paste the full javascript code, paste only the gtag id</small>
                     <ul class="list-group">
