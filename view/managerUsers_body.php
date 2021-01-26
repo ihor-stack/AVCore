@@ -362,9 +362,9 @@ print AVideoPlugin::updateUserFormJS();
                 "commands": function (column, row) {
                     var editBtn = '<button type="button" class="btn btn-xs btn-default command-edit" data-row-id="' + row.id + '" data-toggle="tooltip" data-placement="left" title="<?php echo __('Edit'); ?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>'
                     var infoBtn = '<button type="button" class="btn btn-xs btn-default command-info" data-row-id="' + row.id + '" data-toggle="tooltip" data-placement="left" title="<?php echo __('Info'); ?>"><i class="fas fa-info-circle"></i></button>'
-                    //var deleteBtn = '<button type="button" class="btn btn-default btn-xs command-delete"  data-row-id="' + row.id + '  data-toggle="tooltip" data-placement="left" title="Delete""><span class="glyphicon glyphicon-erase" aria-hidden="true"></span></button>';
+                    var deleteBtn = '<button type="button" class="btn btn-default btn-xs command-delete"  data-row-id="' + row.id + '  data-toggle="tooltip" data-placement="left" title="Delete""><span class="glyphicon glyphicon-erase" aria-hidden="true"></span></button>';
                     var pluginsButtons = '<br><?php echo AVideoPlugin::getUsersManagerListButton(); ?>';
-                    return editBtn + infoBtn + pluginsButtons;
+                    return editBtn + infoBtn + deleteBtn + pluginsButtons;
                 },
                 "tags": function (column, row) {
                     var tags = "";
@@ -426,6 +426,30 @@ print AVideoPlugin::loadUsersFormJS();
                 $('#documentImage').attr('src', '<?php echo $global['webSiteRootURL']; ?>objects/userDocument.png.php?users_id=' + row.id);
                 $('#userInfoModal').modal();
                 modal.hidePleaseWait();
+            }).end().find(".command-delete").on("click", function (e) {
+
+                var row_index = $(this).closest('tr').index();
+                var row = $(selector).bootgrid("getCurrentRows")[row_index];
+                console.log(row);
+                if (confirm('Are you sure to delete user ' + row.user)) {
+                    $.ajax({
+                    url: '<?php echo $global['webSiteRootURL']; ?>objects/userDelete.json.php',
+                            data: {"id": row.id},
+                            type: 'post',
+                            success: function (response) {
+                            if (response.status > "0") {
+                                $('#userFormModal').modal('hide');
+                                $('.bootgrid-table').bootgrid("reload");
+                                avideoToast("<?php echo __("Your user has been deleted!"); ?>");
+                            } else if (response.error){
+                                avideoAlert("<?php echo __("Sorry!"); ?>", response.error, "error");
+                            } else {
+                                avideoAlert("<?php echo __("Sorry!"); ?>", "<?php echo __("Your user has NOT been deleted!"); ?>", "error");
+                            }
+                            modal.hidePleaseWait();
+                        }
+                    });
+                }
             });
         });
     }
