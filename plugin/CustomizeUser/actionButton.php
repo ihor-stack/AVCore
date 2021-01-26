@@ -5,7 +5,7 @@ if ($obj->allowDonationLink && !empty($video['users_id'])) {
     if (!empty($donationLink)) {
         ?>
         <a class="btn btn-success no-outline" href="<?php echo $donationLink; ?>" target="_blank">
-            <i class="fas fa-donate"></i> <small><?php echo __($obj->donationButtonLabel); ?> <i class="fas fa-external-link-alt"></i></small>
+            <i class="fas fa-globe"></i> <small>Website <i class="fas fa-external-link-alt"></i></small>
         </a>    
         <?php
     }
