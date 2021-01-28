@@ -120,7 +120,6 @@
                         <?php require_once $global['systemRootPath'] . 'objects/Studio.php'; ?>
                         <?php echo join(Studio::getOptions()); ?>
                     </select>
-                    <small>Do not paste the full javascript code, paste only the gtag id</small>
                     <ul class="list-group">
                         <li class="list-group-item <?php echo User::isAdmin() ? "" : "hidden"; ?>">
                             <?php echo __("is Admin"); ?>
@@ -287,6 +286,7 @@
             $('#inputName').val('');
             $('#inputChannelName').val('');
             $('#inputAnalyticsCode').val('');
+            $('#inputStudioId').val('');
             $('#isAdmin').prop('checked', false);
             $('.userGroups').prop('checked', false);
             $('#status').prop('checked', true);
