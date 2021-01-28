@@ -8,7 +8,7 @@ $obj->msg = "";
 $obj->webSocketToken = "";
 $obj->webSocketURL = "";
 
-if(!AVideoPlugin::isEnabledByName("Socket")){
+if(!AVideoPlugin::isEnabledByName("YPTSocket")){
     $obj->msg = "Socket plugin not enabled";
     die(json_encode($obj));
 }
@@ -16,6 +16,6 @@ if(!AVideoPlugin::isEnabledByName("Socket")){
 
 $obj->error = false;
 $obj->webSocketToken = getEncryptedInfo(0);
-$obj->webSocketURL = Socket::getWebSocketURL();
+$obj->webSocketURL = YPTSocket::getWebSocketURL();
 
 die(json_encode($obj));

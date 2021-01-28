@@ -86,21 +86,27 @@ if (!empty($obj) && empty($obj->error)) {
     http_response_code(200);
     header("HTTP/1.1 200 OK");
     echo "success";
+    outputAndContinueInBackground();
     Live::on_publish($obj->liveTransmitionHistory_id);
-    if (AVideoPlugin::isEnabledByName('Socket')) {
+    if (AVideoPlugin::isEnabledByName('YPTSocket')) {
+        $array = setLiveKey($lth->getKey(), $lth->getLive_servers_id());
         ob_end_flush();
         $lth = new LiveTransmitionHistory($obj->liveTransmitionHistory_id);
         $m3u8 = Live::getM3U8File($lth->getKey());
-        for ($i = 5; $i > 0; $i--) {
-            if (!isURL200($m3u8)) {
+        $is200 = false;
+        for ($itt = 5; $itt > 0; $itt--) {
+            if (!$is200 = isURL200($m3u8)) {
                 //live is not ready request again
-                sleep($i);
+                sleep($itt);
             } else {
                 break;
             }
         }
-        $array = setLiveKey($lth->getKey(), $lth->getLive_servers_id());
-        $array['stats'] = LiveTransmitionHistory::getStatsAndAddApplication($obj->liveTransmitionHistory_id);
+        if($is200){
+            $array['stats'] = LiveTransmitionHistory::getStatsAndAddApplication($obj->liveTransmitionHistory_id);
+        }else{
+            $array['stats'] = getStatsNotifications();
+        }
         $socketObj = sendSocketMessageToAll($array, "socketLiveONCallback");
     }
     //exit;

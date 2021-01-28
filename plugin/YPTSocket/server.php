@@ -6,15 +6,15 @@ use Socket\Message;
 //use React\Socket\Server as Reactor;
 
 require_once dirname(__FILE__) . '/../../videos/configuration.php';
-require_once $global['systemRootPath'] . 'plugin/Socket/Message.php';
+require_once $global['systemRootPath'] . 'plugin/YPTSocket/Message.php';
 require_once $global['systemRootPath'] . 'objects/autoload.php';
 
 if (!isCommandLineInterface()) {
     die("Command line only");
 }
 
-$SocketDataObj = AVideoPlugin::getDataObject("Socket");
-$SocketDataObj->serverVersion = Socket::getServerVersion();
+$SocketDataObj = AVideoPlugin::getDataObject("YPTSocket");
+$SocketDataObj->serverVersion = YPTSocket::getServerVersion();
 
 ob_end_flush();
 _mysql_close();

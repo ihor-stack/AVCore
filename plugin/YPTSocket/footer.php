@@ -3,7 +3,7 @@ if (isBot()) {
     return false;
 }
 $refl = new ReflectionClass('SocketMessageType');
-$obj = AVideoPlugin::getDataObjectIfEnabled('Socket');
+$obj = AVideoPlugin::getDataObjectIfEnabled('YPTSocket');
 if (!empty($obj->debugAllUsersSocket) || (User::isAdmin() && !empty($obj->debugSocket))) {
     $socket_info_container_class = '';
     $socket_info_container_top = 60;
@@ -146,9 +146,6 @@ if (!empty($obj->debugAllUsersSocket) || (User::isAdmin() && !empty($obj->debugS
         <div class="socketItem" ><i class="fas fa-id-card"></i> Socket ResourceId <span class="socket_resourceId">0</span></div>
         <div class="socketItem" ><i class="fas fa-network-wired"></i> Total Different Devices <span class="total_devices_online">0</span></div>
         <div class="socketItem" ><i class="fas fa-users"></i> Total Users Online <span class="total_users_online">0</span></div>
-        <div class="socketItem" ><i class="far fa-play-circle"></i> Users online on same video as you <span class="total_on_same_video">0</span></div>
-        <div class="socketItem" ><i class="fas fa-podcast"></i> Users online on same live as you <span class="total_on_same_live">0</span></div>
-        <div class="socketItem" ><i class="fas fa-podcast"></i> Users online on same live link as you <span class="total_on_same_livelink">0</span></div>
         <div class="socketItem" id="socketUsersURI">    
         </div>
     </div>
@@ -226,9 +223,9 @@ if (!empty($obj->debugAllUsersSocket) || (User::isAdmin() && !empty($obj->debugS
     var webSocketSelfURI = '<?php echo getSelfURI(); ?>';
     var webSocketVideos_id = '<?php echo getVideos_id(); ?>';
     var webSocketLiveKey = '<?php echo json_encode(isLive()); ?>';
-    var webSocketServerVersion = '<?php echo Socket::getServerVersion(); ?>';
+    var webSocketServerVersion = '<?php echo YPTSocket::getServerVersion(); ?>';
     var webSocketToken = '';
     var webSocketURL = '';
     var webSocketTypes = <?php echo json_encode($refl->getConstants()); ?>;
 </script>
-<script src="<?php echo $global['webSiteRootURL']; ?>plugin/Socket/script.js?<?php echo filectime($global['systemRootPath'] . 'plugin/Socket/script.js'); ?>" type="text/javascript"></script>
+<script src="<?php echo $global['webSiteRootURL']; ?>plugin/YPTSocket/script.js?<?php echo filectime($global['systemRootPath'] . 'plugin/YPTSocket/script.js'); ?>" type="text/javascript"></script>
