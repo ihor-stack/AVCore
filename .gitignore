@@ -69,6 +69,7 @@
 /plugin/predefinedCategory/
 /plugin/upload.sh
 /plugin/upload_local.sh
+/plugin/README.md
 /videos/
 *.ser
 sitemap.xml
