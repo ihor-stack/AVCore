@@ -28,6 +28,7 @@ class User {
     private $channelName;
     private $emailVerified;
     private $analyticsCode;
+    private $studioId;
     private $externalOptions;
     private $userGroups = array();
     private $first_name;
@@ -122,6 +123,14 @@ class User {
         // } else {
         //     $this->analyticsCode = "";
         // }
+    }
+
+    public function getStudioId() {
+        return $this->studioId;
+    }
+
+    public function setStudioId($studioId) {
+        $this->studioId = $studioId;
     }
 
     public function getAnalytics() {
@@ -587,7 +596,7 @@ if (typeof gtag !== \"function\") {
                 $values[] = $this->canViewChart;
                 $sql .= "canViewChart = ?, ";
             }
-            $formats .= "ssssssissssssssssi";
+            $formats .= "ssssssisssssssssssi";
             $values[] = $this->status;
             $values[] = $this->photoURL;
             $values[] = $this->backgroundURL;
@@ -596,6 +605,7 @@ if (typeof gtag !== \"function\") {
             $values[] = $this->channelName;
             $values[] = $this->emailVerified;
             $values[] = $this->analyticsCode;
+            $values[] = $this->studioId;
             $values[] = $this->externalOptions;
             $values[] = $this->first_name;
             $values[] = $this->last_name;
@@ -610,16 +620,16 @@ if (typeof gtag !== \"function\") {
             $sql .= "status = ?, "
                     . "photoURL = ?, backgroundURL = ?, "
                     . "recoverPass = ?, about = ?, "
-                    . " channelName = ?, emailVerified = ? , analyticsCode = ?, externalOptions = ? , "
+                    . " channelName = ?, emailVerified = ? , analyticsCode = ?, studioId = ?, externalOptions = ? , "
                     . " first_name = ? , last_name = ? , address = ? , zip_code = ? , country = ? , region = ? , city = ? , donationLink = ? , "
                     . " modified = now() WHERE id = ?";
         } else {
             $formats = "ssssiiiissssss";
             $values = array($this->user, $this->password, $this->email, $this->name, $this->isAdmin, $this->canStream, $this->canUpload, $this->canCreateMeet,
-                $this->status, $this->photoURL, $this->recoverPass, $this->channelName, $this->analyticsCode, $this->externalOptions);
-            $sql = "INSERT INTO users (user, password, email, name, isAdmin, canStream, canUpload, canCreateMeet, canViewChart, status,photoURL,recoverPass, created, modified, channelName, analyticsCode, externalOptions) "
+                $this->status, $this->photoURL, $this->recoverPass, $this->channelName, $this->analyticsCode, $this->studioId, $this->externalOptions);
+            $sql = "INSERT INTO users (user, password, email, name, isAdmin, canStream, canUpload, canCreateMeet, canViewChart, status,photoURL,recoverPass, created, modified, channelName, analyticsCode, studioId, externalOptions) "
                     . " VALUES (?,?,?,?,?,?,?,?, false, "
-                    . "?,?,?, now(), now(),?,?,?)";
+                    . "?,?,?, now(), now(),?,?,?, ?)";
         }
         $insert_row = sqlDAL::writeSql($sql, $formats, $values);
         if ($insert_row) {

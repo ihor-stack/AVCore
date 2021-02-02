@@ -275,6 +275,9 @@
         return true;
         //return str === '' || (/^ua-\d{4,9}-\d{1,4}$/i).test(str.toString());
     }
+    function isStudioChosen() {
+        return $('#inputStudioId').val() != '';
+    }
     $(document).ready(function () {
 
         startUserGrid("#grid", "?status=a");
@@ -301,10 +304,15 @@ print AVideoPlugin::addUserBtnJS();
         });
         $('#updateUserForm').submit(function (evt) {
         evt.preventDefault();
-                if (!isAnalytics()){
-        avideoAlert("<?php echo __("Sorry!"); ?>", "<?php echo __("Your analytics code is wrong"); ?>", "error");
-                $('#inputAnalyticsCode').focus();
-                return false;
+        if (!isAnalytics()){
+            avideoAlert("<?php echo __("Sorry!"); ?>", "<?php echo __("Your analytics code is wrong"); ?>", "error");
+            $('#inputAnalyticsCode').focus();
+            return false;
+        }
+        if (!isStudioChosen() && $('#checkmark1').is(':checked')){
+            avideoAlert("<?php echo __("Sorry!"); ?>", "<?php echo __("You need to choose a Studio for a Performer kind of user."); ?>", "error");
+            $('#inputStudioId').focus();
+            return false;
         }
 
         modal.showPleaseWait();
@@ -325,6 +333,7 @@ print AVideoPlugin::updateUserFormJS();
                                 "name": $('#inputName').val(),
                                 "channelName": $('#inputChannelName').val(),
                                 "analyticsCode": $('#inputAnalyticsCode').val(),
+                                "inputStudioId": $('#inputStudioId').val(),
                                 "isAdmin": $('#isAdmin').is(':checked'),
                                 "status": $('#status').is(':checked') ? 'a' : 'i',
                                 "isEmailVerified": $('#isEmailVerified').is(':checked'),
@@ -404,6 +413,7 @@ print AVideoPlugin::updateUserFormJS();
                 $('#inputName').val(row.name);
                 $('#inputChannelName').val(row.channelName);
                 $('#inputAnalyticsCode').val(row.analyticsCode);
+                $('#inputStudioId').val(row.studioId);
                 $('.userGroups').prop('checked', false);
                 for (var index in row.groups) {
                     $('#userGroup' + row.groups[index].id).prop('checked', true);

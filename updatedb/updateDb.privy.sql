@@ -53,3 +53,5 @@ ALTER TABLE ppvlive_purchases
     REFERENCES users (id)
     ON DELETE CASCADE
     ON UPDATE CASCADE;
+
+alter table users add column studioId int(11) default null after analyticsCode;
