@@ -87,3 +87,47 @@ button.btn.btn-danger.btn-block {
 #basicInfo .input-group .form-control:not(:first-child):not(:last-child) {
     border-radius: 0;
 }
+
+.list-group-item {
+	border: none;
+}
+
+button.btn.btn-success.btn-block, a.btn.btn-success.btn-block, button.btn.btn-primary.btn-block, a.btn.btn-primary.btn-block, button.btn.btn-danger.btn-block,
+.btn, .btn:hover {
+	border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#search-form #custom-search-input {
+    padding: 0;
+    border: none;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+#search-form #custom-search-input button {
+	border-left: none;
+}
+
+.panel-default {
+	border: none;
+}
+
+.panel-default>.panel-heading {
+	background: transparent;
+	border: none;
+}
+
+legend {
+	border: none;
+	margin: 0;
+	text-align: center;
+}
+
+.well {
+	background: transparent;
+	border: none;
+}
+
+.input-group-addon {
+	display: none;
+}
