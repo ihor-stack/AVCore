@@ -1136,7 +1136,11 @@ if (!User::isLogged() && !empty($advancedCustomUser->userMustBeLoggedIn) && !emp
                     </li>
                     <!-- categories -->
                     <li>
-                        <h3 class="text-danger"><?php echo __($advancedCustom->CategoryLabel); ?></h3>
+                        <h3>
+                            <a href="<?php echo $global['webSiteRootURL']; ?>listCategories" class="text-danger">
+                                <?php echo __($advancedCustom->CategoryLabel); ?>
+                            </a>
+                        </h3>
                     </li>
                     <?php
                     $_rowCount = getRowCount();
@@ -1220,6 +1224,16 @@ if (!User::isLogged() && !empty($advancedCustomUser->userMustBeLoggedIn) && !emp
                         <hr>
                     </li>
                     <?php
+                    if (empty($advancedCustom->disablePlayLink)) {
+                        ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo $global['webSiteRootURL']; ?>playLink">
+                                <i class="fas fa-play-circle"></i>
+                                <?php echo __("Play a Link"); ?>
+                            </a>
+                        </li>    
+                        <?php
+                    }
                     if (empty($advancedCustom->disableHelpLeftMenu)) {
                         ?>
                         <li>
