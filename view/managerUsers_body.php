@@ -105,21 +105,29 @@
                     <input type="email" id="inputEmail" class="form-control" placeholder="<?php echo __("E-mail"); ?>" >
                     <label for="inputName" class="sr-only"><?php echo __("Name"); ?></label>
                     <input type="text" id="inputName" class="form-control " placeholder="<?php echo __("Name"); ?>" >
-                    <label for="inputChannelName" class="sr-only"><?php echo __("Channel Name"); ?></label>
-                    <input type="text" id="inputChannelName" class="form-control" placeholder="<?php echo __("Channel Name"); ?>" >
-                    <label for="inputAnalyticsCode" class="sr-only"><?php echo __("Channel Tier: 2.5, 5, 7.5, 10"); ?></label>
-                    <select id="inputAnalyticsCode" class="form-control">
-                        <option value="">Choose Tier (Studio Only):</option>
+                    <label for="inputChannelName" class="sr-only nhidden"><?php echo __("Channel Name"); ?></label>
+                    <input type="text" id="inputChannelName" class="form-control nhidden" placeholder="<?php echo __("Channel Name"); ?>" >
+
+                    <label for="inputAnalyticsCode" class="sr-only nhidden"><?php echo __("Channel Tier: 2.5, 5, 7.5, 10"); ?></label>
+                    <select id="inputAnalyticsCode" class="form-control nhidden">
+                        <option value="">Choose Tier:</option>
                         <option value="10">Silver Stage Monthly ❤ 10.00 HEART</option>
                         <option value="20">Gold Stage Monthly ❤ 20.00 HEART</option>
                         <option value="30">Platinum Stage Monthly ❤ 30.00 HEART</option>
                     </select>
-                    <label for="inputStudioId" class="sr-only"><?php echo __("Studio"); ?></label>
-                    <select id="inputStudioId" class="form-control last">
-                        <option value="">Choose A Studio (Performers Only):</option>
+                    <label for="inputStudioId" class="sr-only nhidden"><?php echo __("Studio"); ?></label>
+                    <select id="inputStudioId" class="form-control nhidden">
+                        <option value="">Choose A Studio:</option>
                         <?php require_once $global['systemRootPath'] . 'objects/Studio.php'; ?>
                         <?php echo join(Studio::getOptions()); ?>
                     </select>
+
+                    <ul class="list-group">
+                        <?php
+                        print AVideoPlugin::getUserOptions();
+                        ?>
+                    </ul>
+
                     <ul class="list-group">
                         <li class="list-group-item <?php echo User::isAdmin() ? "" : "hidden"; ?>">
                             <?php echo __("is Admin"); ?>
@@ -142,9 +150,6 @@
                                 <label for="status" class="label-success"></label>
                             </div>
                         </li>
-                        <?php
-                        print AVideoPlugin::getUserOptions();
-                        ?>
                     </ul>
                     <ul class="list-group">
                         <li class="list-group-item active">
@@ -299,6 +304,13 @@ print AVideoPlugin::addUserBtnJS();
 ?>
             $('#userFormModal').modal();
         });
+        $('#checkmark1').change(function() { // Performer
+            $('#inputStudioId, label[for=inputStudioId]').toggle(this.checked);
+        });
+        $('#checkmark3').change(function() { // Studio
+            $('#inputAnalyticsCode, label[for=inputAnalyticsCode], #inputChannelName, label[for=inputChannelName]').toggle(this.checked);
+        });
+
         $('#saveUserBtn').click(function (evt) {
             $('#updateUserForm').submit();
         });
@@ -333,7 +345,7 @@ print AVideoPlugin::updateUserFormJS();
                                 "name": $('#inputName').val(),
                                 "channelName": $('#inputChannelName').val(),
                                 "analyticsCode": $('#inputAnalyticsCode').val(),
-                                "inputStudioId": $('#inputStudioId').val(),
+                                "studioId": $('#inputStudioId').val(),
                                 "isAdmin": $('#isAdmin').is(':checked'),
                                 "status": $('#status').is(':checked') ? 'a' : 'i',
                                 "isEmailVerified": $('#isEmailVerified').is(':checked'),

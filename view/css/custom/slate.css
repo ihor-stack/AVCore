@@ -140,3 +140,7 @@ legend {
     border: solid 1px rgba(255, 255, 255, 1) !important;
     cursor: pointer;
 }
+
+.nhidden {
+	display: none;
+}
