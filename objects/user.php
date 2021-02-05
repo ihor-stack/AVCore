@@ -276,11 +276,12 @@ if (typeof gtag !== \"function\") {
     }
 
     public static function _recommendChannelName($name = "", $try = 0, $unknown = "", $users_id = 0) {
-        if (empty($users_id)) {
-            if (!empty(User::getId())) {
-                $users_id = User::getId();
-            }
-        }
+        // GENE: we can't use admin's channel name for users he creates
+        // if (empty($users_id)) {
+        //     if (!empty(User::getId())) {
+        //         $users_id = User::getId();
+        //     }
+        // }
         if (empty($users_id)) {
             $newChannelName = $name . "_" . uniqid();
             if (strlen($newChannelName) > 40) {
